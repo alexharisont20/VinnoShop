@@ -1,0 +1,10 @@
+*
+!.gitignore
+!assets/
+!css/
+!fonts/
+!images/
+!js/
+!libs/
+!product/
+!vendor/
