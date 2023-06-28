@@ -64,7 +64,7 @@
                                         <tr class="cart-item">
                                             <td class="product-image" style="display: flex; flex-direction: row-reverse;">
                                                 <a href="#" >
-                                                    <img class="lazyload" src="{{ url('/public/product/thumbnail/'.$item->model->productImage) }}" style="max-width: 50px">
+                                                    <img class="lazyload" src="{{ asset('product/thumbnail/'.$item->model->productImage) }}" style="max-width: 50px">
                                                 </a>
                                                 <button href="#"  onclick="removeFromCart('{{ $item->rowId }}')" class="btn btn-danger btn-sm">
                                                     <i class="fa fa-trash"></i>

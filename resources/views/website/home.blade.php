@@ -21,7 +21,7 @@
                             @foreach($slides as $key=>$slide)
                                 <div class="carousel-item @if($key == 0 ) active @endif">
                                     <a href="{{ $slide->link }}">
-                                        <img class="d-block w-100 h-100"  src="{{ asset('/public/'.$slide->image) }}" alt="{{ $slide->name }}">
+                                        <img class="d-block w-100 h-100"  src="{{ asset(''.$slide->image) }}" alt="{{ $slide->name }}">
                                     </a>
                                 </div>
                             @endforeach
@@ -50,7 +50,7 @@
                                         <?php
                                         $category = Category::where('categoryName','like',"%{$menu['label']}%")->first();
                                         if(!empty($category->categoryImage)){ ?>
-                                        <img class="cat-image d-lg-none lazyload" src="{{ asset('public/product/thumbnail/default.jpg') }}" data-src="{{ asset('public/product/thumbnail/'.$category->categoryImage) }}" width="30" alt="Special Offer">
+                                        <img class="cat-image d-lg-none lazyload" src="{{ asset('product/thumbnail/default.jpg') }}" data-src="{{ asset('product/thumbnail/'.$category->categoryImage) }}" width="30" alt="Special Offer">
                                         <?php } ?>
                                         <span class="cat-name">{{ $menu['label'] }}</span>
                                     </a>
@@ -76,7 +76,7 @@
                         <div>
                             <div href="#" class="card card-product-grid product-box-2">
                                 <a href="{{ url('/product/'.$product->id)  }}" class="img-wrap">
-                                    <img class="img-fit" src="{{ asset('/public/product/thumbnail/'.$product->productImage)  }}" alt="{{ $product->productName  }}">
+                                    <img class="img-fit" src="{{ asset('product/thumbnail/'.$product->productImage)  }}" alt="{{ $product->productName  }}">
                                 </a>
                                 <figcaption class="info-wrap">
                                     <a href="{{ url('/product/'.$product->id)  }}" class="title text-truncate">{{ $product->productName  }}</a>
@@ -106,7 +106,7 @@
 {{--                    <div class="col-md-2 col-6">--}}
 {{--                        <div href="#" class="card card-product-grid product-box-2">--}}
 {{--                            <a href="{{ url('/product/'.$product->id)  }}" class="img-wrap">--}}
-{{--                                <img class="img-fit lazyload"   src="{{ asset('public/product/thumbnail/default.jpg') }}"  data-src="{{ asset('/public/product/thumbnail/'.$product->productImage)  }}" alt="{{ $product->productName  }}">--}}
+{{--                                <img class="img-fit lazyload"   src="{{ asset('product/thumbnail/default.jpg') }}"  data-src="{{ asset('product/thumbnail/'.$product->productImage)  }}" alt="{{ $product->productName  }}">--}}
 {{--                            </a>--}}
 {{--                            <figcaption class="info-wrap">--}}
 {{--                                <a href="{{ url('/product/'.$product->id)  }}" class="title text-truncate">{{ $product->productName  }}</a>--}}

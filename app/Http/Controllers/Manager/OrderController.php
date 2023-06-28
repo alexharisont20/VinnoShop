@@ -479,7 +479,7 @@ public function show(Request $request)
             if (App::environment('local')) {
                 $item['productImage'] = url('/product/' . $item['productImage']);
             } else {
-                $item['productImage'] = url('/public/product/' . $item['productImage']);
+                $item['productImage'] = asset('product/' . $item['productImage']);
             }
 
             $product[] = array(

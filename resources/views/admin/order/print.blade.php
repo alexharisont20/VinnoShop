@@ -141,7 +141,7 @@ $orderIDs = unserialize($invoice->order_id); ?>
             ->where('order_id', '=', $orderID)->get();
             foreach ($products as $product) { ?>
             <tr>
-                <td><img src="{{ asset('/public/product/thumbnail/'.$product->productImage) }}" style="max-width:50px;margin-right:10px;"/> {{$product->productName}}</td>
+                <td><img src="{{ asset('product/thumbnail/'.$product->productImage) }}" style="max-width:50px;margin-right:10px;"/> {{$product->productName}}</td>
                 <td>{{$product->quantity}}</td>
                 <td>{{$product->productPrice}}  Tk</td>
             </tr>

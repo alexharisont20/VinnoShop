@@ -131,7 +131,7 @@ class CartController extends Controller
                                     <div class="d-flex align-items-center">
                                         <div class="dc-image">
                                             <a href="<?php echo url('/product/'.$item->model->productSlug) ;?>">
-                                                <img  src="<?php echo url('/public/product/thumbnail/'.$item->model->productImage)?>" class="img-fluid" alt="">
+                                                <img  src="<?php echo asset('product/thumbnail/'.$item->model->productImage)?>" class="img-fluid" alt="">
                                             </a>
                                         </div>
                                         <div class="dc-content">
@@ -214,7 +214,7 @@ class CartController extends Controller
                                 <tr class="cart-item">
                                     <td class="product-image" style="display: flex; flex-direction: row-reverse;">
                                         <a href="#" >
-                                            <img class="lazyload" src="<?php echo url('/public/product/thumbnail/'.$item->model->productImage) ?>" style="max-width: 50px">
+                                            <img class="lazyload" src="<?php echo asset('product/thumbnail/'.$item->model->productImage) ?>" style="max-width: 50px">
                                         </a>
                                         <button href="#"  onclick="removeFromCart('<?php echo $item->rowId ?>')" class="btn btn-danger btn-sm">
                                             <i class="fa fa-trash"></i>

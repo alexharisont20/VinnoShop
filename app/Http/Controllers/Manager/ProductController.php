@@ -67,7 +67,7 @@ class ProductController extends Controller
 
         return DataTables::of(Product::with('media','categories')->get())
             ->editColumn('productImage', function ($product) {
-                return "<img src='".asset('/public/product/thumbnail/'.$product->productImage)."' class='img-fluid avatar-lg rounded'>";
+                return "<img src='".asset('product/thumbnail/'.$product->productImage)."' class='img-fluid avatar-lg rounded'>";
             })
             ->editColumn('ProductName', function ($product) {
                 return "<a href=".url('product/'.$product->ProductSlug).">".$product->ProductName."</a>";

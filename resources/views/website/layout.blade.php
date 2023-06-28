@@ -32,7 +32,7 @@
             <div class="d-flex px-3 py-3 align-items-center bg-success" style=" justify-content: space-between; ">
                 <div class="widget-profile-box  d-flex align-items-center">
 
-                    <img class="logo" src="{{ asset('/public/'.Settings::get('site_logo')) }}" alt="{{ Settings::get('site_name') }}" style="    max-width: 100px;" class="w-50">
+                    <img class="logo" src="{{ asset(''.Settings::get('site_logo')) }}" alt="{{ Settings::get('site_name') }}" style="    max-width: 100px;" class="w-50">
                 </div>
                 <div class="side-menu-close">
                     <i class="fa fa-times" aria-hidden="true"></i>
@@ -68,7 +68,7 @@
                         <span class="navbar-toggler-icon"></span>
                     </button>
                     <a href="{{ url('/') }}" class="brand-wrap">
-                        <img class="logo" src="{{ asset('/public/'.Settings::get('site_logo')) }}" alt="{{ Settings::get('site_name') }}">
+                        <img class="logo" src="{{ asset(''.Settings::get('site_logo')) }}" alt="{{ Settings::get('site_name') }}">
                     </a> <!-- brand-wrap.// -->
                 </div>
                 <div class="col-lg-9 col-sm-12 search-box">

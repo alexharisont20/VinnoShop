@@ -11,14 +11,14 @@
 
 								<div class="carousel-item active">
 									<a href="javascript:void(0)" data-toggle="modal" data-target="#lightbox">
-										<img src="{{ url('/public/product/'.$product->productImage)  }}" alt="First slide" class="img-responsive img-thumbnail">
+										<img src="{{ asset('product/'.$product->productImage)  }}" alt="First slide" class="img-responsive img-thumbnail">
 									</a>
 								</div>
 
 							</div>
 							<ol class="carousel-indicators">
 								<li data-target="#single-product-galary" data-slide-to="0" class="active">
-									<img class="img-thumbnail" alt="" src="{{ url('/public/product/thumbnail/'.$product->productImage)  }}">
+									<img class="img-thumbnail" alt="" src="{{ asset('product/thumbnail/'.$product->productImage)  }}">
 								</li>
 							</ol>
 						</div>
@@ -117,7 +117,7 @@
                     <div class="col-md-2 col-6">
                         <div href="#" class="card card-product-grid product-box-2">
                             <a href="{{ url('/product/'.$product->id)  }}" class="img-wrap">
-                                <img class="img-fit lazyload"   src="{{ url('public/product/thumbnail/default.jpg') }}"  data-src="{{ url('/public/product/thumbnail/'.$product->productImage)  }}" alt="{{ $product->productName  }}">
+                                <img class="img-fit lazyload"   src="{{ asset('product/thumbnail/default.jpg') }}"  data-src="{{ asset('product/thumbnail/'.$product->productImage)  }}" alt="{{ $product->productName  }}">
                             </a>
                             <figcaption class="info-wrap">
                                 <a href="{{ url('/product/'.$product->id)  }}" class="title text-truncate">{{ $product->productName  }}</a>

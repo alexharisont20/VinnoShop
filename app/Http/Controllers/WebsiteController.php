@@ -62,7 +62,7 @@ class WebsiteController extends Controller
         <div class="col-md-2 col-6">
             <div href="#" class="card card-product-grid product-box-2">
                 <a href="<?php  echo url('/product/'.$product->id)  ?>" class="img-wrap">
-                    <img class="img-fit lazyload"   src="<?php echo asset('public/product/thumbnail/default.jpg') ?>"  data-src="<?php echo asset('/public/product/thumbnail/'.$product->productImage)  ?>" alt="<?php echo $product->productName  ?>">
+                    <img class="img-fit lazyload"   src="<?php echo asset('product/thumbnail/default.jpg') ?>"  data-src="<?php echo asset('product/thumbnail/'.$product->productImage)  ?>" alt="<?php echo $product->productName  ?>">
                 </a>
                 <figcaption class="info-wrap">
                     <a href="<?php echo url('/product/'.$product->id)  ?>" class="title text-truncate"><?php echo $product->productName  ?></a>
