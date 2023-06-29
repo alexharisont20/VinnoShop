@@ -1,0 +1,5 @@
+/vendor
+/7.4
+db.sql
+docker-compose.yml
+sail

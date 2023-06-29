@@ -2,6 +2,7 @@
 
 namespace App\Providers;
 
+use Illuminate\Routing\UrlGenerator;
 use Illuminate\Support\ServiceProvider;
 
 class AppServiceProvider extends ServiceProvider
@@ -13,6 +14,11 @@ class AppServiceProvider extends ServiceProvider
      */
     public function register()
     {
+        $this->app->singleton('url', function ($app) {
+            $app->instance('request', $app['request']);
+            
+            return new UrlGenerator($app['router']->getRoutes(), $app['request'], 'https://s3.tebi.io/vinnoshop');
+        });
         $this->app->bind("pathao", function () {
             return new \App\Pathao\Manage\Manage(
                 new \App\Pathao\Apis\AreaApi(),
