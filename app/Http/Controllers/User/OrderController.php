@@ -20,7 +20,6 @@ use App\User;
 use App\Zone;
 use App\PaymentCompelte;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\App;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 use Yajra\Datatables\DataTables;
@@ -461,11 +460,7 @@ class OrderController extends Controller
         }
         $product = array();
         foreach ($products as $item) {
-            if (App::environment('local')) {
-                $item['productImage'] = url('/product/' . $item['productImage']);
-            } else {
-                $item['productImage'] = asset('product/' . $item['productImage']);
-            }
+            $item['productImage'] = asset('product/' . $item['productImage']);
 
             $product[] = array(
                 "id" => $item['id'],

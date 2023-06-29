@@ -2,6 +2,8 @@
 
 use Illuminate\Foundation\Inspiring;
 use Illuminate\Support\Facades\Artisan;
+use Illuminate\Support\Facades\File;
+use Illuminate\Support\Facades\Storage;
 
 /*
 |--------------------------------------------------------------------------
@@ -17,3 +19,15 @@ use Illuminate\Support\Facades\Artisan;
 Artisan::command('inspire', function () {
     $this->comment(Inspiring::quote());
 })->describe('Display an inspiring quote');
+
+Artisan::command('cpy', function () {
+    $chunks = collect(File::allFiles(public_path('/')))->chunk(50);
+
+    $chunks->each(function ($chunk) {
+        $chunk->each(function ($file) {
+            $filePath = $file->getPathname();
+            $destinationPath = $file->getRelativePathname();
+            Storage::disk('s3')->put($destinationPath, File::get($filePath), 'public');
+        });
+    });
+});

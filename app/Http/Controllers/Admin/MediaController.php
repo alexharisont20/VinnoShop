@@ -6,7 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Media;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\File;
+use Illuminate\Support\Facades\Storage;
 use Intervention\Image\Facades\Image;
 
 class MediaController extends Controller
@@ -53,26 +53,19 @@ class MediaController extends Controller
     {
         $image = $request->file('file');
         if (isset($image)) {
-
-            $original = public_path('/');
-            $full = public_path('product/');
-            $thumbnail = public_path('product/thumbnail/');
-
-            if (!is_dir($full)){
-                File::makeDirectory($full,0777,true);
-            }
-            if (!is_dir($thumbnail)){
-                File::makeDirectory($thumbnail,0777,true);
-            }
-
             $imageName = uniqid() . '.jpg';
-            $original = $original.$imageName;
-            $full = $full.$imageName;
-            $thumbnail = $thumbnail.$imageName;
 
-            Image::make($image)->save($original);
-            Image::make($image)->fit(450, 450)->save($full);
-            Image::make($image)->fit(180, 200)->save($thumbnail);
+            $img = Image::make($image);
+            Storage::disk('s3')->put($imageName, $img->encode('jpg'), 'public');
+            $img->destroy();
+        
+            $img = Image::make($image)->fit(450, 450);
+            Storage::disk('s3')->put('product/'.$imageName, $img->encode('jpg'), 'public');
+            $img->destroy();
+        
+            $img = Image::make($image)->fit(180, 200);
+            Storage::disk('s3')->put('product/thumbnail/'.$imageName, $img->encode('jpg'), 'public');
+            $img->destroy();
 
             $media = new Media();
             $media->name = $imageName;
@@ -152,11 +145,9 @@ class MediaController extends Controller
     {
         if($id){
             $media = Media::find($id);
-            $full = public_path('product/'.$media->url);
-            $thumbnail = public_path('product/thumbnail/'.$media->url);
+            Storage::disk('s3')->delete('product/'.$media->url);
+            Storage::disk('s3')->delete('product/thumbnail/'.$media->url);
             $media->delete();
-            File::delete($full);
-            File::delete($thumbnail);
             $response['status'] = 'success';
             $response['message'] = 'Successfully Delete image';
         }else {
@@ -175,11 +166,9 @@ class MediaController extends Controller
         if($request->ids){
             foreach ($request->ids as $id) {
                 $media = Media::find($id);
-                $full = public_path('product/'.$media->url);
-                $thumbnail = public_path('product/thumbnail/'.$media->url);
+                Storage::disk('s3')->delete('product/'.$media->url);
+                Storage::disk('s3')->delete('product/thumbnail/'.$media->url);
                 $media->delete();
-                File::delete($full);
-                File::delete($thumbnail);
 
                 $response['status'] = 'success';
                 $response['message'] = 'Successfully Delete image';

@@ -4,7 +4,6 @@ namespace App\Http\Controllers\Manager;
 use App\Category;
 use App\Media;
 use Illuminate\Support\Facades\DB;
-use Illuminate\Support\Facades\File;
 use Intervention\Image\Facades\Image;
 use Yajra\Datatables\DataTables;
 use App\Http\Controllers\Controller;
@@ -146,11 +145,9 @@ class ProductController extends Controller
 
         $image = $request['productImage'];
         if (isset($image)) {
-            if (!Storage::disk('public')->exists('product')) {
-                Storage::disk('public')->makeDirectory('product');
-            }
             $imageName = uniqid() . '.' . $image->getClientOriginalExtension();
-            $result = $request->productImage->move(public_path('product'), $imageName);
+            $result = Storage::disk('s3')->put('product/'.$imageName, $image, 'public');
+
             if ($result) {
                 $response['status'] = 'success';
                 $response['message'] = 'Successful to upload image';
@@ -229,23 +226,15 @@ class ProductController extends Controller
             if(empty($checkProduct)) {
 
                 $image = $syncProduct->image;
-                $full = public_path('product/');
-                $thumbnail = public_path('product/thumbnail/');
-                if (!is_dir($full)){
-                    File::makeDirectory($full,0777,true);
-                }
-                if (!is_dir($thumbnail)){
-                    File::makeDirectory($thumbnail,0777,true);
-                }
-
                 $imageName = uniqid() . '.jpg';
-                $full = $full.$imageName;
-                $thumbnail = $thumbnail.$imageName;
 
+                $img = Image::make(file_get_contents($image))->fit(450, 450);
+                Storage::disk('s3')->put('product/'.$imageName, $img->encode('jpg'), 'public');
+                $img->destroy();
 
-                $img = Image::make(file_get_contents($image))->fit(450, 450)->save($full);
-                $img = Image::make(file_get_contents($image))->fit(180, 200)->save($thumbnail);
-
+                $img = Image::make(file_get_contents($image))->fit(180, 200);
+                Storage::disk('s3')->put('product/thumbnail/'.$imageName, $img->encode('jpg'), 'public');
+                $img->destroy();
 
                 $media = new Media();
                 $media->name = $imageName;
