@@ -4961,9 +4961,6 @@ ALTER TABLE `users`
 ALTER TABLE `zones`
   MODIFY `id` bigint UNSIGNED NOT NULL AUTO_INCREMENT;
 
-
-ALTER TABLE `admin_menu_items`
-  ADD CONSTRAINT `admin_menu_items_menu_foreign` FOREIGN KEY (`menu`) REFERENCES `admin_menus` (`id`) ON DELETE CASCADE ON UPDATE CASCADE;
 SET FOREIGN_KEY_CHECKS=1;
 COMMIT;
 

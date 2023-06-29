@@ -2,6 +2,7 @@
 
 use Illuminate\Foundation\Inspiring;
 use Illuminate\Support\Facades\Artisan;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\File;
 use Illuminate\Support\Facades\Storage;
 
@@ -30,4 +31,8 @@ Artisan::command('cpy', function () {
             Storage::disk('s3')->put($destinationPath, File::get($filePath), 'public');
         });
     });
+});
+
+Artisan::command('dbi', function () {
+    DB::unprepared(file_get_contents(base_path('db.sql')));
 });
