@@ -34,5 +34,37 @@ Artisan::command('cpy', function () {
 });
 
 Artisan::command('dbi', function () {
+    // DB::unprepared('DROP TABLE IF EXISTS `admin_menu_items`;');
+    // DB::unprepared('DROP TABLE IF EXISTS `admin_menus`;');
+    // DB::unprepared('DROP TABLE IF EXISTS `migrations`;');
+    // DB::unprepared('DROP TABLE IF EXISTS `password_resets`;');
+    // DB::unprepared('DROP TABLE IF EXISTS `users`;');
+    // DB::unprepared('DROP TABLE IF EXISTS `products`;');
+    // DB::unprepared('DROP TABLE IF EXISTS `payment_types`;');
+    // DB::unprepared('DROP TABLE IF EXISTS `zones`;');
+    // DB::unprepared('DROP TABLE IF EXISTS `suppliers`;');
+    // DB::unprepared('DROP TABLE IF EXISTS `stores`;');
+    // DB::unprepared('DROP TABLE IF EXISTS `stocks`;');
+    // DB::unprepared('DROP TABLE IF EXISTS `sliders`;');
+    // DB::unprepared('DROP TABLE IF EXISTS `settings`;');
+    // DB::unprepared('DROP TABLE IF EXISTS `roles`;');
+    // DB::unprepared('DROP TABLE IF EXISTS `purchases`;');
+    // DB::unprepared('DROP TABLE IF EXISTS `categories`;');
+    // DB::unprepared('DROP TABLE IF EXISTS `category_product`;');
+    // DB::unprepared('DROP TABLE IF EXISTS `cities`;');
+    // DB::unprepared('DROP TABLE IF EXISTS `countries`;');
+    // DB::unprepared('DROP TABLE IF EXISTS `customers`;');
+    // DB::unprepared('DROP TABLE IF EXISTS `failed_jobs`;');
+    // DB::unprepared('DROP TABLE IF EXISTS `invoices`;');
+    // DB::unprepared('DROP TABLE IF EXISTS `media`;');
+    // DB::unprepared('DROP TABLE IF EXISTS `media_product`;');
+    // DB::unprepared('DROP TABLE IF EXISTS `notifications`;');
+    // DB::unprepared('DROP TABLE IF EXISTS `order_products`;');
+    // DB::unprepared('DROP TABLE IF EXISTS `orders`;');
+    // DB::unprepared('DROP TABLE IF EXISTS `pages`;');
+    // DB::unprepared('DROP TABLE IF EXISTS `payment_compeltes`;');
+    // DB::unprepared('DROP TABLE IF EXISTS `payments`;');
+    // DB::unprepared('DROP TABLE IF EXISTS `couriers`;');
+
     DB::unprepared(file_get_contents(base_path('db.sql')));
 });
